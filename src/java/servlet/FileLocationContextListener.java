@@ -13,7 +13,6 @@ public class FileLocationContextListener implements ServletContextListener {
     private String rootPath = "E:\\upload";
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        rootPath = "E:\\upload";
         ServletContext ctx = servletContextEvent.getServletContext();
         String relativePath = ctx.getInitParameter("tempfile.dir");
         File file = new File(rootPath + File.separator + relativePath);

@@ -5,7 +5,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <title>Upload</title>
+        <link href="buttons.css" rel="stylesheet">
+        <title>Message window   </title>
     </head>
     <body>
         <h2>${requestScope.message}</h2>

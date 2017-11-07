@@ -3,15 +3,30 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/folder_adapters/FolderCheck.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/index.html</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/MakeDir.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/message.jsp</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/UploadDownloadFileServlet.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/Folder.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/fileUpload.css</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/menu.css</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/folder_adapters/unZipFolder.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/folder_adapters/MakeDir.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/newhtml.html</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/links.css</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/hibernate.cfg.xml</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/DeleteFolderAndFile.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/auth.html</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/buttons.css</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/FileLocationContextListener.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/hiddenWindow.css</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/registration/Auth.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/folder_adapters/zipFolder.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/registration/RegistrationForm.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/file_adapters/DeleteFolderAndFile.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/Main_servlet.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/registration.html</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/tables.css</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/folderCSS.css</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/file_adapters/UploadDownloadFileServlet.java</file>
         </group>
     </open-files>
 </project-private>
