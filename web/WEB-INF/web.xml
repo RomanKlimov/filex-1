@@ -19,14 +19,11 @@
         </session-timeout>
     </session-config>
     
-<display-name>ServletFileUploadDownload</display-name>
+<display-name>FileX</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
-  <context-param>
-    <param-name>tempfile.dir</param-name>
-    <param-value>tmpfiles</param-value>
-  </context-param>
+
 </web-app>
 
 

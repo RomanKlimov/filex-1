@@ -13,7 +13,6 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.stream.Collectors;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -60,12 +59,23 @@ public class Main_servlet extends HttpServlet {
                     + "<link href=\"buttons.css\" rel=\"stylesheet\">"
                     + "<link href=\"hiddenWindow.css\" rel=\"stylesheet\">"
                     + "<link href=\"fileUpload.css\" rel=\"stylesheet\">"
+                    + "<link href=\"folderCSS.css\" rel=\"stylesheet\">"
                     + "<link href=\"links.css\" rel=\"stylesheet\">"
-                    + "<link href=\"tables.css\" rel=\"stylesheet\">");
+                    + "<link href=\"tables.css\" rel=\"stylesheet\">"
+                    + "<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>\n"
+                    + "<script type=\"text/javascript\">\n"
+                    + "	setTimeout(function(){$('.box').fadeOut('fast')},3000);\n"
+                    + "</script>\n");
             out.println("<head>");
             out.println("<title>Servlet Folder</title>"
                     + "</head>");
-            out.println("<body>");
+            String message = request.getParameter("message");
+            if (message != null) {
+                out.println("<body>"
+                        + "<div class=\"box\">\n"
+                        + message
+                        + "</div>");
+            }
             out.println("<p>" + path + "</p>");
             if (!path.equals(cl.getPath())) {
                 out.println("<form method=\"post\"\n"
@@ -99,7 +109,7 @@ public class Main_servlet extends HttpServlet {
                     + "<a href=\"#\" class=\"close\">Close</a>"
                     + "      </div>\n"
                     + "    </div>\n"
-                    + "<a href=\"#createFolderDIV\">Create Folder</a>");
+                    + "<a href=\"#createFolderDIV\">Create Folder</a><br><br>");
             out.println("<table cellpadding=\"4\" cellspacing=\"1\">\n"
                     + "<tr><th>Button</th><th>Direcory/Name</th><th>Path</th><th>Delete</th></tr>");
             File pFolder = new File(path);

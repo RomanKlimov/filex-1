@@ -6,14 +6,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <link href="buttons.css" rel="stylesheet">
-        <title>Message window   </title>
+        <title>Message window</title>
     </head>
-    <body>
+    <body onload='document.getElementById("submit_button").submit();'>
         <h2>${requestScope.message}</h2>
-        <form method="post" action="Folder" autocomplete="off">
+        <form id='submit_button' method="post" action="Folder" autocomplete="off">
             <input type="hidden" name="goTo" value="${requestScope.goTo}">
-
-            <input type="submit" value="Open">
+            <input type="hidden" name="message" value="${requestScope.message}">
+            <input type="submit" value="Open" autofocus>
         </form>
     </body>
 </html>
