@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import servlet.folder_adapters.FolderCheck;
+import servlet.registration.models.User;
 
 /**
  *
@@ -49,7 +50,7 @@ public class Main_servlet extends HttpServlet {
             path = request.getParameter("goTo");
         }
         if (path == null) {
-            path = "E:\\upload";
+            path = "E:\\" + String.valueOf(((User) session.getAttribute("user")).getFolder());
         }
         session.removeAttribute("goTo");
         response.setContentType("text/html;charset=UTF-8");
@@ -77,11 +78,11 @@ public class Main_servlet extends HttpServlet {
                         + "</div>");
             }
             out.println("<p>" + path + "</p>");
-            if (!path.equals(cl.getPath())) {
+            if (!path.equals("E:\\" + String.valueOf(((User) session.getAttribute("user")).getFolder()))) {
                 out.println("<form method=\"post\"\n"
                         + "action=\"Folder\"\n"
                         + "autocomplete=\"off\">"
-                        + "<input type=\"hidden\" name=\"goTo\" value=\"" + cl.getPath() + "\">"
+                        + "<input type=\"hidden\" name=\"goTo\" value=\"" + "E:\\" + String.valueOf(((User) session.getAttribute("user")).getFolder()) + "\">"
                         + "<input type=\"submit\" value=\"Main Folder\">"
                         + "</form><br>");
             }
@@ -179,7 +180,7 @@ public class Main_servlet extends HttpServlet {
             //out.println(Files.walk(Paths.get("C:\\Users\\User\\Desktop\\upload")).filter(Files::isRegularFile).map(Path::toFile).collect(Collectors.toList()));
             out.println("</table>\n<br>");
 
-            if (check.check(pFolderPath.toAbsolutePath().toString())) {
+            if (check.check("E:\\" + String.valueOf(((User) session.getAttribute("user")).getFolder()), pFolderPath.toAbsolutePath().toString())) {
                 out.println("<form method=\"post\"\n"
                         + "action=\"Folder\"\n"
                         + "autocomplete=\"off\">"

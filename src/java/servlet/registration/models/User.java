@@ -8,6 +8,7 @@ public class User {
     private String password;
     private String phoneNumber;
     private String addres;
+    private int folder;
 
     public User(int id, String name, String email, String password, String phoneNumber, String addres) {
         this.id = id;
@@ -16,6 +17,7 @@ public class User {
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.addres = addres;
+        this.folder = email.hashCode();
     }
 
     public User(String name, String email, String password, String phoneNumber, String addres) {
@@ -24,6 +26,15 @@ public class User {
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.addres = addres;
+        this.folder = email.hashCode();
+    }
+
+    public int getFolder() {
+        return folder;
+    }
+
+    public void setFolder(int folder) {
+        this.folder = folder;
     }
 
     public int getId() {

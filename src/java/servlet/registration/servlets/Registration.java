@@ -13,9 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import servlet.registration.db.FileDAO;
+import servlet.registration.models.UserFile;
 
 @WebServlet(name = "registration", urlPatterns = {"/registration"})
 public class Registration extends HttpServlet {
+
     private String email;
     private String firstName;
     private String secondName;
@@ -26,18 +29,20 @@ public class Registration extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getSession().removeAttribute("user");
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
-        if(user != null){
+        if (user != null) {
             resp.sendRedirect("/filex/login");
-        }else {
+        } else {
             fillEnteredInformation(req);
-            req.getRequestDispatcher("/jsp/register.jsp").forward(req,resp);
+            req.getRequestDispatcher("/jsp/register.jsp").forward(req, resp);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getSession().removeAttribute("user");
         email = req.getParameter("email");
         firstName = req.getParameter("firstName");
         secondName = req.getParameter("secondName");
@@ -49,19 +54,19 @@ public class Registration extends HttpServlet {
         RegularTester ret = new RegularTester();
         boolean checker = true;
 
-        if(!ret.isCorrectEmail(email)){
+        if (!ret.isCorrectEmail(email)) {
             checker = false;
             email = null;
             showError(req, "email", "Invalid Email!");
         }
 
-        if(!ret.isCorrectName(firstName)){
+        if (!ret.isCorrectName(firstName)) {
             checker = false;
             firstName = null;
             showError(req, firstName, "Invalid first name!");
         }
 
-        if(!ret.isCorrectName(secondName)){
+        if (!ret.isCorrectName(secondName)) {
             checker = false;
             secondName = null;
             showError(req, secondName, "Invalid second name!");
@@ -77,9 +82,10 @@ public class Registration extends HttpServlet {
             }
         }
 
-        if(checker){
+        if (checker) {
             try {
                 addUser(req);
+                addFile(req);
                 resp.sendRedirect("login");
             } catch (DBException e) {
                 doGet(req, resp);
@@ -87,7 +93,7 @@ public class Registration extends HttpServlet {
                 showError(req, "email", "This email already used");
                 doGet(req, resp);
             }
-        }else {
+        } else {
             doGet(req, resp);
         }
     }
@@ -108,8 +114,13 @@ public class Registration extends HttpServlet {
         UserDAO base = new UserDAO();
         User user = new User(secondName + " " + firstName, email, password, phoneNumber, addres);
         base.addUser(user);
-        req.getSession().setAttribute("user",user);
+        req.getSession().setAttribute("user", user);
+
     }
 
+    private void addFile(HttpServletRequest req) throws DBException, AlreadyExistException {
+        FileDAO fd = new FileDAO();
+        fd.addFile((User) req.getSession().getAttribute("user"));
+        
+    }
 }
-

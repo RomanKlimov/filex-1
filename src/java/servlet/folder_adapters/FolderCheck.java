@@ -15,10 +15,8 @@ import servlet.FileLocationContextListener;
  */
 public class FolderCheck {
 
-    public boolean check(String path) {
-        FileLocationContextListener listener;
-        listener = new FileLocationContextListener();
-        File fileG = new File(listener.getPath());
+    public boolean check(String dir, String path) {
+        File fileG = new File(dir);
         Path general = fileG.toPath();
         File fileN = new File(path);
         Path newF = fileN.toPath();

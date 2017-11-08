@@ -13,13 +13,18 @@ import java.io.IOException;
 
 @WebServlet(name = "login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User) req.getSession().getAttribute("user");
-        if(user != null)
-            resp.sendRedirect("Folder");
-        else
-            req.getRequestDispatcher("/jsp/login.jsp").forward(req,resp);
+        if (user != null) {
+            req.getSession().setAttribute("goTo", "E:\\" + user.getFolder());
+            req.getSession().setAttribute("message", "You logged as " + user.getEmail().toString());
+            getServletContext().getRequestDispatcher("/message.jsp").forward(
+                    req, resp);
+        } else {
+            req.getRequestDispatcher("/jsp/login.jsp").forward(req, resp);
+        }
     }
 
     @Override
@@ -33,10 +38,13 @@ public class Login extends HttpServlet {
                 User user = getUser(email, password);
                 if (user != null) {
                     req.getSession().setAttribute("user", user);
-                    if(user.getEmail().equals("admin") && user.getPassword().equals("admin")){
+                    if (user.getEmail().equals("admin") && user.getPassword().equals("admin")) {
                         resp.sendRedirect("/admin");
-                    }else {
-                        resp.sendRedirect("Folder");
+                    } else {
+                        req.getSession().setAttribute("goTo", "E:\\" + user.getFolder());
+                        req.getSession().setAttribute("message", "You logged as " + user.getEmail());
+                        getServletContext().getRequestDispatcher("/message.jsp").forward(
+                                req, resp);
                     }
                 } else {
                     req.setAttribute("wrong", "User not found");
@@ -54,4 +62,3 @@ public class Login extends HttpServlet {
         return repository.findByEmail(email, password);
     }
 }
-

@@ -1,17 +1,17 @@
 package servlet.registration.models;
 
-public class File {
+public class UserFile {
     private int id;
     private int user_id;
     private String root_link;
-    private String name;
+    
 
-    public File(int id, int user_id, String root_link) {
+    public UserFile(int id, int user_id, String root_link) {
         this.id = id;
         this.user_id = user_id;
         this.root_link = root_link;
     }
-    public File(int user_id, String root_link) {
+    public UserFile(int user_id, String root_link) {
         this.user_id = user_id;
         this.root_link = root_link;
     }
@@ -40,11 +40,5 @@ public class File {
         this.root_link = root_link;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+   
 }

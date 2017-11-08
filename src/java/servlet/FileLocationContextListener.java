@@ -6,6 +6,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+import servlet.registration.models.User;
 
 @WebListener
 public class FileLocationContextListener implements ServletContextListener {
@@ -13,16 +14,10 @@ public class FileLocationContextListener implements ServletContextListener {
     private String rootPath = "E:\\upload";
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
+        /*       User user = (User) servletContextEvent.getServletContext().getAttribute("user");
+        this.rootPath = String.valueOf(user.getFolder());*/
         ServletContext ctx = servletContextEvent.getServletContext();
-        String relativePath = ctx.getInitParameter("tempfile.dir");
-        File file = new File(rootPath + File.separator + relativePath);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        System.out.println("File Directory created to be used for storing files");
-        ctx.setAttribute("FILES_DIR_FILE", file);
-        ctx.setAttribute("FILES_DIR", rootPath + File.separator + relativePath);
-        System.out.println(rootPath + File.separator + relativePath);
+
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
