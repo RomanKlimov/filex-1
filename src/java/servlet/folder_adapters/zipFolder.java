@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.zip.Deflater;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -43,10 +44,21 @@ public class zipFolder extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String dirName = request.getParameter("toZip");
         File dir = new File(dirName);
-        zipFileName = dir.getParent() + File.separator + dir.getName() + ".zip";
+        String goTo = dir.getParent() + File.separator;
         
+        if (request.getParameter("zipType") != null) {
+            int max = 9000000;
+            int min = 1000000;
+            zipFileName = dir.getAbsolutePath() + File.separator + "BackUp" + String.valueOf(new Random().nextInt(max) + min) + ".zip";
+            goTo = dir.getAbsolutePath();
+        } else {
+            zipFileName = dir.getParent() + File.separator + dir.getName() + ".zip";
+        }
+        
+        request.removeAttribute("zipType");
         if (!dir.exists() || !dir.isDirectory()) {
             throw new FileNotFoundException(dir + " not found");
         }
@@ -89,9 +101,9 @@ public class zipFolder extends HttpServlet {
         } catch (IllegalArgumentException e) {
             request.setAttribute("message", "Некорректный аргумент " + e);
         } catch (IOException e) {
-            request.setAttribute("message", "Ошибка доступа " + e); 
+            request.setAttribute("message", "Ошибка доступа " + e);
         }
-        request.setAttribute("goTo", dir.getParent() + File.separator);
+        request.setAttribute("goTo", goTo);
         getServletContext().getRequestDispatcher("/message.jsp").forward(
                 request, response);
     }

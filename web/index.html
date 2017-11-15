@@ -1,17 +1,88 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <link href="links.css" rel="stylesheet">
-        <link href="buttons.css" rel="stylesheet">
-        <link href="menu.css" rel="stylesheet">
+        <meta charset="utf-8">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/assats/css/styles.css"/>
+        <link rel="shortcut icon" href="ico/ico.png" type="image/png">
+        <title>FileX</title>
     </head>
     <body>
-        <ul>
-            <li><a href="jsp/login.jsp" name="Login">Sign In</a></li>
-            <li><a href="jsp/register.jsp" name="Register">Sign Up</a></li>
-            <li><input type="button" value="Folder" onClick="document.location = 'Folder'"/></li>
-            
-        </ul>
-        
+        <nav>
+            <div class="nav-wrapper green lighten-2">
+                <a href="#!" class="brand-logo"><i class="fa fa-cloud" aria-hidden="true"></i>FileX</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#">About</a></li>
+                    <li><a href="#Contact">Contact</a></li>
+                    <li><a href="login">Login</a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="login">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="parallax-container valign-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col 18 s12 white-text">
+                        <h4 class="thin-text left-alighn white-text lighten-3-text valign">Hello Everyone, we are CS students of Kazan, Russia &amp; and it's our yet another cloud-based file manager. </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col 14">
+                        <a href="registration" class="waves-effect waves-light btn-large hoverable">Get started</a>
+                    </div>
+                </div>
+            </div>
 
+            <div class="parallax"><img src="assats\img\clouds.jpg"></div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <h2 class="section-header white-text lighten-3-text valign"><a name="Contact"></a>Contact Us:</h2>
+            </div>
+
+            <div class="row">
+                <form class="col s12" action="contactUs" method="post">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="First Name" name="firstName" id="first_name" type="text" class="validate">
+                            <label for="first_name">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="Last Name" name="lastName" id="last_name" type="text" class="validate">
+                            <label for="last_name">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="Email" name="email" id="email" type="email" class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="text" name="message" class="validate">
+                            <label>Tell us your thouts</label>
+                            <div class="row">
+                                <div class="col 14">
+                                    <input type="submit" class="waves-effect waves-light btn-large hoverable" value="Send">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="https://use.fontawesome.com/51f901e835.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <script type="text/javascript" src="assats\js\scripts.js"></script>
     </body>
 </html>

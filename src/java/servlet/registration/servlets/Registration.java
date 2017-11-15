@@ -1,5 +1,6 @@
 package servlet.registration.servlets;
 
+import Encription.Encript;
 import servlet.registration.Service.RegularTester;
 import servlet.registration.db.UserDAO;
 import servlet.registration.exceptions.AlreadyExistException;
@@ -13,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import servlet.registration.db.FileDAO;
 import servlet.registration.models.UserFile;
 
@@ -33,10 +37,10 @@ public class Registration extends HttpServlet {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         if (user != null) {
-            resp.sendRedirect("/filex/login");
+            resp.sendRedirect("login");
         } else {
             fillEnteredInformation(req);
-            req.getRequestDispatcher("/jsp/register.jsp").forward(req, resp);
+            req.getRequestDispatcher("register.jsp").forward(req, resp);
         }
     }
 
@@ -92,6 +96,8 @@ public class Registration extends HttpServlet {
             } catch (AlreadyExistException e) {
                 showError(req, "email", "This email already used");
                 doGet(req, resp);
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             doGet(req, resp);
@@ -99,20 +105,21 @@ public class Registration extends HttpServlet {
     }
 
     private void fillEnteredInformation(HttpServletRequest req) {
-        req.setAttribute("email", email);
-        req.setAttribute("firstName", firstName);
-        req.setAttribute("secondName", secondName);
-        req.setAttribute("phoneNumber", phoneNumber);
-        req.setAttribute("addres", addres);
+        req.getSession().setAttribute("email", email);
+        req.getSession().setAttribute("firstName", firstName);
+        req.getSession().setAttribute("secondName", secondName);
+        req.getSession().setAttribute("phoneNumber", phoneNumber);
+        req.getSession().setAttribute("addres", addres);
     }
 
     private void showError(HttpServletRequest req, String name, String errMessage) {
-        req.setAttribute("err" + name, errMessage);
+        req.getSession().setAttribute("err" + name, errMessage);
     }
 
-    private void addUser(HttpServletRequest req) throws DBException, AlreadyExistException {
+    private void addUser(HttpServletRequest req) throws DBException, AlreadyExistException, NoSuchAlgorithmException {
         UserDAO base = new UserDAO();
-        User user = new User(secondName + " " + firstName, email, password, phoneNumber, addres);
+        Encript encript = new Encript();
+        User user = new User(secondName + " " + firstName, email, encript.encript(password), phoneNumber, addres);
         base.addUser(user);
         req.getSession().setAttribute("user", user);
 

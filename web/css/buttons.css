@@ -1,0 +1,21 @@
+input[type=button], input[type=submit], input[type=reset] {
+    background-color: #81C784;
+    border: none;
+    color: white;
+    padding: 12px 35px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+input[type=button]:hover:not(.active) {
+    background-color: #111;
+}
+
+input[type=submit]:hover:not(.active) {
+    background-color: #111;
+}
+input[type=reset]:hover:not(.active) {
+    background-color: #111;
+}
+

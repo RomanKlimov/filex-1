@@ -6,7 +6,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import servlet.registration.models.User;
 
 @WebListener
 public class FileLocationContextListener implements ServletContextListener {

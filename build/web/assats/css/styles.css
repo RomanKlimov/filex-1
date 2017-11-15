@@ -1,0 +1,25 @@
+body {
+  min-height: 186vh;
+}
+.thin-text {
+  font-weight: 300;
+  background: rgba(75, 75, 75, .4);
+  padding: 40px;
+  border-radius: 10px;
+}
+.brand-logo {
+  margin-right: 10px;
+}
+.section-header {
+  font-weight: 300;
+  background: rgba(30,144,255,.4);
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.parallax {
+  padding: 0px;
+}
+.container {
+  padding: 0px;
+}

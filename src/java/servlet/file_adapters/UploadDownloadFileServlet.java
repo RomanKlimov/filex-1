@@ -30,7 +30,7 @@ public class UploadDownloadFileServlet extends HttpServlet {
         fileFactory.setRepository(filesDir);
         this.uploader = new ServletFileUpload(fileFactory);
     }
-//method for downloading files
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String fileName = request.getParameter("fileName");
         String path = request.getServletContext().getAttribute("FILES_DIR") + File.separator + fileName;
@@ -93,7 +93,7 @@ public class UploadDownloadFileServlet extends HttpServlet {
         if (path != null) {
             savePath = path;
         }
-        // creates the save directory if it does not exists
+
         File fileSaveDir = new File(savePath);
         if (!fileSaveDir.exists()) {
             fileSaveDir.mkdir();
@@ -101,7 +101,7 @@ public class UploadDownloadFileServlet extends HttpServlet {
 
         for (Part part : request.getParts()) {
             String fileName = extractFileName(part);
-            // refines the fileName in case it is an absolute path
+
             fileName = new File(fileName).getName();
             try {
                 System.out.println(new File(fileName).canWrite());

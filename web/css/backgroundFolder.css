@@ -1,0 +1,8 @@
+body {
+    background-image: url(backgrounds/folder-background.jpg);
+    -moz-background-size: 100%;
+    -webkit-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+}
+
