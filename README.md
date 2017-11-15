@@ -1,2 +1,2 @@
 # Cloud Drive
-Cloud Drive with jQuery, JS, HTML5, Java
+Cloud Drive based on servlets with jQuery, JS, HTML5, Java and materialize design 
