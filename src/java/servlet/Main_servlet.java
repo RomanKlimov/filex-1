@@ -13,6 +13,8 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +22,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import servlet.file_adapters.FileInfo;
+import servlet.folder_adapters.CapacityController;
 import servlet.folder_adapters.FolderCheck;
 import servlet.folder_adapters.whereIsUser;
+import servlet.adminDb.CapacityDAO;
+import servlet.registration.exceptions.DBException;
 import servlet.registration.models.User;
 
 /**
@@ -32,10 +37,10 @@ import servlet.registration.models.User;
 public class Main_servlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, DBException {
         HttpSession session = request.getSession();
         String path = (String) session.getAttribute("goTo");
-
+        User user = (User) request.getSession().getAttribute("user");
         FolderCheck check = new FolderCheck();
         FileLocationContextListener cl = new FileLocationContextListener();
 
@@ -50,6 +55,11 @@ public class Main_servlet extends HttpServlet {
         }
         session.removeAttribute("goTo");
         response.setContentType("text/html;charset=UTF-8");
+        File pFolder = new File(path);
+        Path pFolderPath = pFolder.toPath().getParent();
+
+        CapacityDAO cap = new CapacityDAO();
+        CapacityController cc = new CapacityController();
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>"
@@ -75,7 +85,7 @@ public class Main_servlet extends HttpServlet {
             out.println("<body>\n"
                     + "<nav>\n"
                     + "            <div class=\"nav-wrapper green lighten-2\">\n"
-                    + "                <a href=\"index.html\" class=\"brand-logo\"><i class=\"fa fa-cloud\" aria-hidden=\"true\"></i>FileX</a>\n"
+                    + "                <a href=\"index.html\" class=\"brand-logo\"><i class=\"fa fa-cloud\" aria-hidden=\"true\"></i>FileX Personal Area</a>\n"
                     + "                <a href=\"#\" data-activates=\"mobile-demo\" class=\"button-collapse\"><i class=\"material-icons\">menu</i></a>\n"
                     + "                <ul class=\"right hide-on-med-and-down\">\n"
                     + "                    <li><a href=\"index.html\">Main Page</a></li>\n"
@@ -104,9 +114,11 @@ public class Main_servlet extends HttpServlet {
                         + "<input type=\"submit\" value=\"Main Folder\">"
                         + "</form><br>");
             }
+            String avaliableCapacity = "<h4>Avaliable capacity: " + String.valueOf(cap.getUsersCapacity((User) request.getSession().getAttribute("user")) - cc.getDirSize(new File("E:\\" + File.separator + user.getFolder()))) + " mb</h4>\n";
             out.println("<div class = \"control\">\n"
                     + "<div id=\"uploadDIV\">\n"
                     + "      <div id=\"okno\" >\n"
+                    + avaliableCapacity
                     + "<form action=\"UploadDownloadFileServlet\" method=\"post\" enctype=\"multipart/form-data\">\n"
                     + "<input type=\"file\" name=\"fileName\" multiple>\n"
                     + "<input type=\"hidden\" name=\"toUpload\" value=\"" + path + "\">"
@@ -150,8 +162,9 @@ public class Main_servlet extends HttpServlet {
             out.println("</div>");
             out.println("<table cellpadding=\"4\" cellspacing=\"1\">\n"
                     + "<tr><th>Button</th><th>Directory/Name</th><th>Path</th><th>Delete</th></tr>");
-            File pFolder = new File(path);
-            Path pFolderPath = pFolder.toPath().getParent();
+
+            float proc = (float) cc.getDirSize(new File("E:\\" + File.separator + user.getFolder())) / cap.getUsersCapacity((User) request.getSession().getAttribute("user"));
+
             if (new File(path).list().length == 0) {
                 out.println("<tr>");
                 for (int i = 0; i < 4; i++) {
@@ -170,7 +183,6 @@ public class Main_servlet extends HttpServlet {
                                     + "action=\"Folder\"\n"
                                     + "autocomplete=\"off\">"
                                     + "<input type=\"hidden\" name=\"goTo\" value=\"" + file + "\">"
-                                    //+ "<input type=\"button\" name=\"goTo\"  onClick=\"document.location = 'Main_servlet'\"/>"
                                     + "<input type=\"submit\" value=\"Open\">"
                                     + "</form>");
                         }
@@ -187,7 +199,8 @@ public class Main_servlet extends HttpServlet {
 
                         out.println("<td>" + new FileInfo().getInfo(file) + "</td>");
 
-                        out.println("<td><form method=\"post\"\n"
+                        out.println("<td>\n"
+                                + "<form method=\"post\"\n"
                                 + "action=\"DeleteFolderAndFile\"\n"
                                 + "autocomplete=\"off\">"
                                 + "<input type=\"hidden\" name=\"whereTo\" value=\"" + file + "\">");
@@ -232,7 +245,11 @@ public class Main_servlet extends HttpServlet {
                         + "<input type=\"submit\" value=\"Back\">"
                         + "</form>");
             }
-            out.println(""
+
+            out.println(avaliableCapacity + "<br>"
+                    + "<div class=\"progress\">\n"
+                    + "      <div class=\"determinate\" style=\"width:" + proc * 100 + "%\"></div>\n"
+                    + "  </div>"
                     + "<script type=\"text/javascript\" src=\"https://code.jquery.com/jquery-2.1.1.min.js\"></script>\n"
                     + "        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js\"></script>"
                     + "</body>");
@@ -253,7 +270,11 @@ public class Main_servlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DBException ex) {
+            Logger.getLogger(Main_servlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -267,7 +288,11 @@ public class Main_servlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DBException ex) {
+            Logger.getLogger(Main_servlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

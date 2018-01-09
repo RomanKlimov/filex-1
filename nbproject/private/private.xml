@@ -4,50 +4,38 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/registration/models/User.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/registration/exceptions/InsertException.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/css/folderCSS.css</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/registration/db/UserDAO.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/css/hiddenWindow.css</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/index.html</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/registration/db/FileDAO.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/css/tables.css</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/folder_adapters/whereIsUser.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/admin_servlets/ChangeUserRole.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/registration/servlets/Registration.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/folder_adapters/createFolder.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/admin_servlets/generateKeys.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/admin_servlets/Admin.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/registration/models/Key.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/admin.jsp</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/register.jsp</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/FileAdapter/WriteMapToFile.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/admin_servlets/setUsersCapacity.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/registration/servlets/Login.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/registration/exceptions/DBException.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/css/backgroundFolder.css</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/registration/db/FeedbackDAO.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/css/links.css</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/admin_servlets/setKey.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/file_adapters/UploadDownloadFileServlet.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/adminDb/CapacityDAO.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/folder_adapters/CapacityController.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/folder_adapters/FolderCheck.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/css/backUpCSS.css</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/registration/servlets/ContactUs.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/registration/exceptions/AlreadyExistException.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/message.jsp</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/Encription/Encript.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/folder_adapters/unZipFolder.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/adminDb/LogsDAO.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/Properties/bd.properties</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/registration/models/UserFile.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/folder_adapters/MakeDir.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/css/links-in-folder.css</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/META-INF/context.xml</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/FileLocationContextListener.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/css/buttons.css</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/file_adapters/FileInfo.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/registration/servlets/Logout.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/login.jsp</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/folder_adapters/zipFolder.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/css/textCSS.css</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/registration/Service/RegularTester.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/file_adapters/DeleteFolderAndFile.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/nbproject/build-impl.xml</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/Main_servlet.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/admin_servlets/DeleteUser.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/registration/db/DataSource.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/css/menu.css</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/assats/img/clouds.jpg</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/web/assats/css/styles.css</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/registration/db/FolderDAO.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/filex/src/java/servlet/admin_servlets/getAllLogs.java</file>
         </group>
     </open-files>
 </project-private>

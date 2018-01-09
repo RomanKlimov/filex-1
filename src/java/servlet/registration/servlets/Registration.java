@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import servlet.registration.db.FileDAO;
+import servlet.registration.db.FolderDAO;
 import servlet.registration.models.UserFile;
 
 @WebServlet(name = "registration", urlPatterns = {"/registration"})
@@ -29,7 +29,6 @@ public class Registration extends HttpServlet {
     private String password;
     private String repassword;
     private String phoneNumber;
-    private String addres;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -53,7 +52,6 @@ public class Registration extends HttpServlet {
         password = req.getParameter("password");
         repassword = req.getParameter("repassword");
         phoneNumber = req.getParameter("phoneNumber");
-        addres = req.getParameter("addres");
 
         RegularTester ret = new RegularTester();
         boolean checker = true;
@@ -85,6 +83,11 @@ public class Registration extends HttpServlet {
                 showError(req, "repassword", "Passwords don't equal");
             }
         }
+        if (!ret.isCorrectPhone(phoneNumber)) {
+            checker = false;
+            phoneNumber = null;
+            showError(req, phoneNumber, "Invalid phone number");
+        }
 
         if (checker) {
             try {
@@ -109,7 +112,6 @@ public class Registration extends HttpServlet {
         req.getSession().setAttribute("firstName", firstName);
         req.getSession().setAttribute("secondName", secondName);
         req.getSession().setAttribute("phoneNumber", phoneNumber);
-        req.getSession().setAttribute("addres", addres);
     }
 
     private void showError(HttpServletRequest req, String name, String errMessage) {
@@ -119,15 +121,15 @@ public class Registration extends HttpServlet {
     private void addUser(HttpServletRequest req) throws DBException, AlreadyExistException, NoSuchAlgorithmException {
         UserDAO base = new UserDAO();
         Encript encript = new Encript();
-        User user = new User(secondName + " " + firstName, email, encript.encript(password), phoneNumber, addres);
+        User user = new User(secondName + " " + firstName, email, encript.encript(password), phoneNumber);
         base.addUser(user);
         req.getSession().setAttribute("user", user);
 
     }
 
     private void addFile(HttpServletRequest req) throws DBException, AlreadyExistException {
-        FileDAO fd = new FileDAO();
-        fd.addFile((User) req.getSession().getAttribute("user"));
+        FolderDAO fd = new FolderDAO();
+        fd.addFolder((User) req.getSession().getAttribute("user"));
         
     }
 }

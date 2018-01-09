@@ -5,6 +5,7 @@
  */
 package servlet.registration.db;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ import servlet.registration.exceptions.DBException;
 
 public class FeedbackDAO {
 
-    public boolean addFeedback(String firstName, String lastName, String email, String message) throws DBException, AlreadyExistException {
+    public boolean addFeedback(String firstName, String lastName, String email, String message) throws DBException, AlreadyExistException, IOException {
         Connection conn = DataSource.getConnection();
 
         try {

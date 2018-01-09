@@ -6,6 +6,11 @@ public class RegularTester {
     public boolean isCorrectName(String name) {
         return Pattern.matches("^[A-Za-zА-Яа-я]{2,20}", name);
     }
+    
+    public boolean isCorrectPhone(String phoneNumber) {
+        return Pattern.matches("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$", phoneNumber);
+    }
+    
 
     public boolean isCorrectPassword(String password) {
         return Pattern.matches("^[A-Za-z0-9]{6,60}", password);

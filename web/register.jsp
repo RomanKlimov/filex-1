@@ -46,11 +46,8 @@
                 <span style="color: red">${errphoneNumber}</span>
                 <p><input name="phoneNumber" type="text" value="${phoneNumber}" placeholder="Phone number"></p>
 
-                <span style="color: red">${erraddres}</span>
-                <p><input name="address" type="text" value="${addres}" placeholder="Address"></p>
-
                 <input name="btn" type="submit" value="Create Account">
             </form>
         </div>
-    </body>
-</html>
+                </body>
+                </html>

@@ -25,12 +25,22 @@ public class Login extends HttpServlet {
         User user;
 
         user = (User) req.getSession().getAttribute("user");
-        
+
         if (user != null) {
-            req.getSession().setAttribute("goTo", "E:\\" + user.getFolder());    
-            session.setAttribute("user", user);
-            getServletContext().getRequestDispatcher("/Folder").forward(
-                    req, resp);
+            UserDAO dao = new UserDAO();
+            try {
+                if (dao.checkRole(user)) {
+                    resp.sendRedirect("Admin");
+                } else {
+                    req.getSession().setAttribute("goTo", "E:\\" + user.getFolder());
+                    session.setAttribute("user", user);
+                    getServletContext().getRequestDispatcher("/Folder").forward(
+                            req, resp);
+                }
+            } catch (DBException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         } else {
             req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
@@ -48,13 +58,14 @@ public class Login extends HttpServlet {
                 User user = getUser(email, password);
                 if (user != null) {
                     req.getSession().setAttribute("user", user);
-                    if (user.getEmail().equals("admin") && user.getPassword().equals("admin")) {
-                        resp.sendRedirect("/admin");
+                    UserDAO dao = new UserDAO();
+                    if (dao.checkRole(user)) {
+                        resp.sendRedirect("Admin");
                     } else {
                         req.getSession().setAttribute("goTo", "E:\\" + user.getFolder());
                         getServletContext().getRequestDispatcher("/Folder").forward(
                                 req, resp);
-                    }   
+                    }
                 } else {
                     req.getSession().setAttribute("email", email);
                     req.getSession().setAttribute("wrong", "User not found");
@@ -72,6 +83,6 @@ public class Login extends HttpServlet {
     private User getUser(String email, String password) throws DBException, NoSuchAlgorithmException {
         UserDAO repository = new UserDAO();
         Encript encript = new Encript();
-        return repository.findByEmail(email, encript.encript(password));
+        return repository.findByEmailAndPass(email, encript.encript(password));
     }
 }

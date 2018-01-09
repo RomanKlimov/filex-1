@@ -7,26 +7,40 @@ public class User {
     private String email;
     private String password;
     private String phoneNumber;
-    private String addres;
     private int folder;
+    private boolean adminRole;
 
-    public User(int id, String name, String email, String password, String phoneNumber, String addres) {
+    public User(int id, String name, String email, String password, String phoneNumber) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
-        this.addres = addres;
         this.folder = email.hashCode();
     }
 
-    public User(String name, String email, String password, String phoneNumber, String addres) {
+    public User(String name, String email, String password, String phoneNumber) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
-        this.addres = addres;
         this.folder = email.hashCode();
+    }
+
+    public User(String name, String email, String phoneNumber, boolean adminRole) {
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.folder = email.hashCode();
+        this.adminRole = adminRole;
+    }
+
+    public boolean getAdminRole() {
+        return adminRole;
+    }
+
+    public void setAdminRole(boolean adminRole) {
+        this.adminRole = adminRole;
     }
 
     public int getFolder() {
@@ -77,11 +91,4 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAddres() {
-        return addres;
-    }
-
-    public void setAddres(String addres) {
-        this.addres = addres;
-    }
 }
